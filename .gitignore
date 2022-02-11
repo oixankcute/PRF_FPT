@@ -1,0 +1,51 @@
+//	Workshop 03 _ Check ISBN number 
+/**
+ * @ due 22.01.2022 
+ * @author Nguyen Thi Minh Chau _ SE1728 
+ */
+#include<stdio.h>
+#include<stdlib.h>
+//Prototype 
+void checkISBN();
+
+int main(){
+//input 
+	long long n;
+	int check; 
+	printf(" ISBN Validator \n ============== "); 
+	do{ 
+		printf("\n"); 
+		printf(" ISBN (0 to quit): ");
+		scanf("%lld", &n);
+		check=n; 
+//output 
+		if(n==0){
+			printf(" Have a nice day"); 
+			exit(0); 
+		} else{
+			checkISBN(n);
+		}
+	} while(check!=0); 
+	return 0; 
+} 
+
+void checkISBN(n){
+	int arr[10], i, j, sum=0;
+	for(i=0; i<10; i++){
+		arr[i]=n%10; //luu lai tung chu so trong so n 
+		n/=10;
+	} 
+	j=2;
+	while(j<=10){
+		for(i=1; i<10; i++){
+			sum += arr[i]*j; // nhan lan luot cac chu so voi cac so tu 2 den 10. 
+			j++; 
+		} 
+	}
+	if((sum+arr[0])%11==0){
+		printf(" This is a valid ISBN"); 
+	} else{
+		printf(" This is not a valid ISBN"); 
+	} 
+	
+} 
