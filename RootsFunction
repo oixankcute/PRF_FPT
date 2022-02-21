@@ -1,0 +1,67 @@
+//	Workshop 04.1 _ Roots Function 
+/**
+ * @ due 13.02.2022 
+ * @author Nguyen Thi Minh Chau _ SE1728 
+ */
+#include<stdio.h>
+#include<math.h>
+	
+	//Prototype
+int roots(double a, double b, double c, double *x1, double *x2);
+
+	//Program
+int main(){
+	char run = 'y';
+	double a, b, c, x1, x2, root; 
+	while(run == 'y'){
+		
+		// Input	
+		printf("1. Input the coefficients of the quadratic equation: \n");
+		printf("Enter a, b, c: ");
+		scanf("%lf%lf%lf", &a, &b, &c);
+		
+		// Output 
+		printf("\n2. Solve the equation\n");
+		root = roots(a, b, c, &x1, &x2);
+		if (a == 0) {
+        	if (b == 0) {
+           		printf("There are not real roots");
+        	} else {
+            	printf("There are one real roots: x0 = %lf", (-c / b));
+        	}
+		}else {
+			if (root == 2 ){
+        		printf("There are 2 real roots: x1 = %lf, x2 = %lf ", x1, x2);
+			}else if(root == 0){
+				printf("There are not real roots ");
+			} else{
+				printf("There are one real roots: x0 = %lf", x1);
+			}
+		}  
+		
+		//Ask the user to continue the program or not?
+		printf("\n\nAnother run <y/n>? ");
+		scanf("%c", &run);
+		run = getchar(); 
+	}
+	return 0; 
+}
+	//
+int roots(double a, double b, double c, double *x1, double *x2){
+	double D;
+	int root; 
+	D = (pow(b,2))-(4*a*c);
+	if(D>0){
+		root =2; 
+		*x1 = (- b + sqrt( D ) ) / ( 2 * a );
+	    *x2 = (- b - sqrt( D ) ) / ( 2 * a );
+		return root;
+	} else if(D<0){
+		root =0; 
+		return root;
+	} else {
+		root = 1; 
+		*x1 = (- b + sqrt( D ) ) / ( 2 * a );
+		return root ;
+	}
+}
